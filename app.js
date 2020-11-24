@@ -5,7 +5,7 @@
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
-const themesRouter = require('./routes/themes')
+const indexRouter = require('./routes/admin/index')
 const app = express()
 
 /**
@@ -26,8 +26,15 @@ app.use(bodyParser.json())
 app.engine('html', require('express-art-template'))
 app.set('views', path.join(__dirname, './views/'))
 
-// 路由
-app.use(themesRouter)
+/**
+ *  api路由
+*/
+
+
+/**
+ * 后台路由
+*/
+app.use(indexRouter)
 
 // 监听
 app.listen('3000', () => {
