@@ -1,0 +1,177 @@
+<!--
+ * @Author: liweilong
+ * @Date: 2020-11-25 17:13:04
+-->
+
+{{ extend '../../layout/layout.html' }}
+
+{{ block 'title' }}
+添加内容
+{{ /block }}
+
+{{ block 'content' }}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h4 class="m-0">添加头部导航内容</h4>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/admin">首页</a></li>
+            <li class="breadcrumb-item"><a href="/admin/headertitle">头部导航内容</a></li>
+            <li class="breadcrumb-item active">添加</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              {{ if headerTitle }}
+              <h3 class="card-title">编辑头部导航</h3>
+              {{ else }}
+              <h3 class="card-title">添加头部导航</h3>
+              {{ /if }}
+            </div>
+            <!-- /.card-heade·r -->
+            <!-- form start -->
+            {{ if headerTitle }}
+            <form id="topBannerForm" action="/admin/headertitle/edit" method="post">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">导航文字</label>
+                  <input type="text" class="form-control" id="headerInputtitle" placeholder="请输入你的标题" name="title"
+                    value="{{headerTitle.title}}">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">导航链接</label>
+                  <input type="text" class="form-control" id="link_url" name="link_url" value="{{headerTitle.link_url}}"
+                    placeholder="请输入导航链接">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">图片链接</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="headerTileimg_input" name="headerTileimg">
+                      <label class="custom-file-label" for="exampleInputFile">{{headerTitle.img_url}}</label>
+                    </div>
+                    <img src="" alt="" id="img_wrap" style="width: 180px;
+                    height: 180px;display: none;">
+                    <input type="text" id="img_input" name="img_url" value="{{headerTitle.img_url}}" hidden>
+                    <input type="text" name="id" value="{{headerTitle.id}}" hidden>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" id="edit_btn">编辑</button>
+              </div>
+            </form>
+            {{ else }}
+            <form id="topBannerForm">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">导航文字</label>
+                  <input type="text" class="form-control" id="headerInputtitle" placeholder="请输入你的标题" name="title">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">导航链接</label>
+                  <input type="text" class="form-control" id="link_url" name="link_url" placeholder="请输入导航链接">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">图片链接</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="headerTileimg_input" name="headerTileimg">
+                      <label class="custom-file-label" for="exampleInputFile">选择图片</label>
+                    </div>
+                    <img src="" alt="" id="img_wrap" style="width: 180px;
+                    height: 180px;display: none;">
+                    <input type="text" id="img_input" name="img_url" hidden>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" id="btn_form">添加</button>
+              </div>
+            </form>
+            {{ /if }}
+
+
+
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+</div>
+{{ /block }}
+
+{{ block 'footer' }}
+<script>
+  $('#btn_form').on('click', function (event) {
+    event.preventDefault()
+    let formData = $('#topBannerForm').serialize()
+    $.ajax({
+      url: '/admin/headertitle/add',
+      type: 'post',
+      data: formData,
+      dataType: 'json',
+      success: function (res) {
+        $('input[name=title]').val('')
+        $('input[name=link_url]').val('')
+        $('input[name=img_url]').val('')
+        layer.msg(res.msg, { icon: 1 });
+        $('#img_wrap').hide()
+        $('.custom-file').show()
+        $('#img_wrap').attr('src', '')
+      }
+    })
+  })
+
+
+
+  // 图片上传
+  $('#headerTileimg_input').change(function () {
+    let formData = new FormData()
+    formData.set('headerTileimg', this.files[0])
+    $.ajax({
+      url: '/admin/headertitle/upload',
+      type: 'post',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (res) {
+        console.log(res);
+        if (res.code === 200) {
+          let { img_url } = res.data
+          $('#img_wrap').attr('src', img_url)
+          $('#img_wrap').show()
+          $('.custom-file').hide()
+          $('#img_input').val(img_url)
+        } else {
+          layer.msg('上传失败', { icon: 0 })
+        }
+      }
+    })
+  })
+
+
+</script>
+{{ /block }}

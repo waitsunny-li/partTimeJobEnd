@@ -4,6 +4,5 @@
 */
 
 module.exports = {
-  api: '/api',
-  root: '/admin'
+  env: 'http://localhost:3000'
 }

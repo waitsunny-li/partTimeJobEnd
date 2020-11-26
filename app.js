@@ -5,8 +5,14 @@
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
-const indexRouter = require('./routes/admin/index')
+const indexRouter = require('./routes/admin/topHeader')
+const headerTitleRouter = require('./routes/admin/headerTitle')
+
+const themesRouter = require('./routes/api/themes')
+
+
 const app = express()
+
 
 /**
  *注册中间件
@@ -29,12 +35,25 @@ app.set('views', path.join(__dirname, './views/'))
 /**
  *  api路由
 */
+app.use('/api', themesRouter)
 
 
 /**
  * 后台路由
 */
-app.use(indexRouter)
+app.use('/admin', indexRouter)
+app.use('/admin/headertitle', headerTitleRouter)
+
+
+// 统一处理404错误
+app.use((req, res) => {
+  res.render('admin/404.html')
+})
+
+// 配置统一处理错误信息中间件
+app.use((err, req, res, next) => {
+  res.json(err)
+})
 
 // 监听
 app.listen('3000', () => {

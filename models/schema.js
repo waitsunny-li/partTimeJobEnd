@@ -10,7 +10,7 @@ const topHeaderSchema = {
   },
   desc: {
     type: String,
-    required: true
+    default: ''
   },
   created_time: {
     type: String,
@@ -34,7 +34,7 @@ const headerTitleSchema = {
   },
   priority: {
     type: Number,
-    required: true
+    default: 0
   },
   created_time: {
     type: String,
