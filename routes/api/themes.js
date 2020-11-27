@@ -6,7 +6,9 @@ const express = require('express')
 const themes = require('../../models/themes')
 const {
   topHeaders,
-  headerTitles
+  headerTitles,
+  slideActives,
+  bannerJobs
 } = require('../../models/themes')
 const result = require('../../lib/result')
 
@@ -30,6 +32,26 @@ themesRouter.get('/headertitles', (req, res, next) => {
     }
     res.json(result.back(data))
   })
+})
+
+// api头部导航小程序获取
+themesRouter.get('/slideactives', (req, res, next) => {
+  slideActives.find({}, (err, data) => {
+    if (err) {
+      next(result.servererror('无法获取数据'))
+    }
+    res.json(result.back(data))
+  })
+})
+
+// api头部导航小程序获取
+themesRouter.get('/bannerjobs', async (req, res, next) => {
+  const data = await bannerJobs.find({})
+  if (data.length > 0) {
+    res.json(result.back(r))
+  } else {
+    next(result.servererror('获取失败'))
+  }
 })
 
 module.exports = themesRouter

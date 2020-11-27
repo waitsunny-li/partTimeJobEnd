@@ -1,0 +1,217 @@
+<!--
+ * @Author: liweilong
+ * @Date: 2020-11-27 09:11:00
+-->
+
+{{ extend '../../layout/layout.html' }}
+
+{{ block 'title' }}
+添加内容
+{{ /block }}
+
+{{ block 'content' }}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h4 class="m-0">添加活动展示内容</h4>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/admin">首页</a></li>
+            <li class="breadcrumb-item"><a href="/admin/slideactive">活动展示内容</a></li>
+            <li class="breadcrumb-item active">添加</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              {{ if slideActive }}
+              <h3 class="card-title">编辑活动展示</h3>
+              {{ else }}
+              <h3 class="card-title">添加活动展示</h3>
+              {{ /if }}
+            </div>
+            <!-- /.card-heade·r -->
+            <!-- form start -->
+            {{ if slideActive }}
+            <form id="topBannerForm" action="/admin/slideactive/edit" method="post">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="title">标题</label>
+                  <input type="text" class="form-control" id="title" placeholder="请输入你的标题" name="title" value="{{slideActive.title}}">
+                  <input type="text" value="{{slideActive.id}}" hidden name="id">
+                </div>
+                <div class="form-group">
+                  <label for="desc">简介</label>
+                  <input type="text" class="form-control" id="desc" placeholder="请输入你的简介" name="desc" value="{{slideActive.desc}}">
+                </div>
+                <div class="form-group">
+                  <label for="desc_color">简介颜色</label>
+                  <input type="text" class="form-control" id="desc_color" placeholder="请输入背景色彩" name="desc_color" value="{{slideActive.desc_color}}">
+                </div>
+                <div class="form-group">
+                  <label for="btn_text">按钮文字</label>
+                  <input type="text" class="form-control" id="btn_text" placeholder="请输入按钮文字" name="btn_text" value="{{slideActive.btn_text}}">
+                </div>
+                <div class="form-group">
+                  <label for="link_url">跳转链接</label>
+                  <input type="text" class="form-control" id="link_url" name="link_url" placeholder="请输入跳转链接" value="{{slideActive.link_url}}">
+                </div>
+                <div class="form-group">
+                  <label for="image_url">图片链接</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="image_url">
+                      <label class="custom-file-label" for="image_url">{{slideActive.image_url}}</label>
+                    </div>
+                    <img src="" alt="" id="img_wrap" style="width: 180px;
+                    height: 180px;display: none;">
+                    <input type="text" id="img_input" name="image_url" hidden value="{{slideActive.image_url}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="bg_color">背景色彩</label>
+                  <input type="text" class="form-control" id="bg_color" placeholder="请输入背景色彩" name="bg_color" value="{{slideActive.bg_color}}">
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" id="edit_btn">编辑</button>
+              </div>
+            </form>
+            {{ else }}
+            <form id="topBannerForm">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="title">标题</label>
+                  <input type="text" class="form-control" id="title" placeholder="请输入你的标题" name="title">
+                </div>
+                <div class="form-group">
+                  <label for="desc">简介</label>
+                  <input type="text" class="form-control" id="desc" placeholder="请输入你的简介" name="desc">
+                </div>
+                <div class="form-group">
+                  <label for="desc_color">简介颜色</label>
+                  <input type="text" class="form-control" id="desc_color" placeholder="请输入背景色彩" name="desc_color">
+                </div>
+                <div class="form-group">
+                  <label for="btn_text">按钮文字</label>
+                  <input type="text" class="form-control" id="btn_text" placeholder="请输入按钮文字" name="btn_text">
+                </div>
+                <div class="form-group">
+                  <label for="link_url">跳转链接</label>
+                  <input type="text" class="form-control" id="link_url" name="link_url" placeholder="请输入跳转链接">
+                </div>
+                <div class="form-group">
+                  <label for="image_url">图片链接</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="image_url">
+                      <label class="custom-file-label" for="image_url">选择图片</label>
+                    </div>
+                    <img src="" alt="" id="img_wrap" style="width: 180px;
+                    height: 180px;display: none;">
+                    <input type="text" id="img_input" name="image_url" hidden>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="bg_color">背景色彩</label>
+                  <input type="text" class="form-control" id="bg_color" placeholder="请输入背景色彩" name="bg_color">
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" id="btn_form">添加</button>
+              </div>
+            </form>
+            {{ /if }}
+
+
+
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+</div>
+{{ /block }}
+
+{{ block 'footer' }}
+<script>
+  $('#btn_form').on('click', function (event) {
+    event.preventDefault()
+    let formData = $('#topBannerForm').serialize()
+    $.ajax({
+      url: '/admin/slideactive/add',
+      type: 'post',
+      data: formData,
+      dataType: 'json',
+      success: function (res) {
+        if (res.code === 200) {
+          console.log(res);
+          $('input[name=title]').val('')
+          $('input[name=link_url]').val('')
+          $('input[name=desc]').val('')
+          $('input[name=btn_text]').val('')
+          $('input[name=bg_color]').val('')
+          $('input[name=img_url]').val('')
+          layer.msg(res.msg, { icon: 1 });
+          $('#img_wrap').hide()
+          $('.custom-file').show()
+          $('#img_wrap').attr('src', '')
+        } else {
+          layer.msg(res.msg, { icon: 0 });
+        }
+
+      }
+    })
+  })
+
+
+
+  // 图片上传
+  $('#image_url').change(function () {
+    let formData = new FormData()
+    formData.set('img_url', this.files[0])
+    $.ajax({
+      url: '/admin/slideactive/upload',
+      type: 'post',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (res) {
+        console.log(res);
+        if (res.code === 200) {
+          let { img_url } = res.data
+          console.log(img_url);
+          $('#img_wrap').attr('src', img_url)
+          $('#img_wrap').show()
+          $('.custom-file').hide()
+          $('#img_input').val(img_url)
+        } else {
+          layer.msg('上传失败', { icon: 0 })
+        }
+      }
+    })
+  })
+
+
+</script>
+{{ /block }}

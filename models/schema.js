@@ -52,7 +52,15 @@ const bannerActivesSchema = {
     type: String,
     required: true,
   },
+  desc_color: {
+    type: String,
+    default: '#ffffff'
+  },
   btn_text: {
+    type: String,
+    required: true,
+  },
+  link_url: {
     type: String,
     required: true,
   },
@@ -84,13 +92,17 @@ const bannerJobSchema = {
     type: String,
     required: true
   },
+  link_url: {
+    type: String,
+    required: true
+  },
   part_title: {
     type: String,
     required: true,
   },
-  distance: {
-    type: Number,
-    required: false,
+  address: {
+    type: String,
+    required: true,
   },
   wage: {
     type: Number,

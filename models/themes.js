@@ -25,7 +25,7 @@ const headerTitles = mongoose.model('header', headerTitleSche)
 
 // 滚动图片模型
 const bannerActivesSche = new Schema(bannerActivesSchema)
-const bannerActives = mongoose.model('banneractive', bannerActivesSche)
+const slideActives = mongoose.model('banneractive', bannerActivesSche)
 
 // 滚动图片模型
 const bannerJobSche = new Schema(bannerJobSchema)
@@ -36,6 +36,6 @@ const bannerJobs = mongoose.model('bannerjob', bannerJobSche)
 module.exports = {
   topHeaders,
   headerTitles,
-  bannerActives,
+  slideActives,
   bannerJobs
 }

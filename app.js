@@ -5,9 +5,13 @@
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
+
+// 路由模块
 const indexRouter = require('./routes/admin/topHeader')
 const headerTitleRouter = require('./routes/admin/headerTitle')
-
+const slideRouter = require('./routes/admin/slideactive')
+const bannerJobRouter = require('./routes/admin/bannerJob')
+// api路由模块
 const themesRouter = require('./routes/api/themes')
 
 
@@ -39,10 +43,12 @@ app.use('/api', themesRouter)
 
 
 /**
- * 后台路由
+ * 后台管理路由
 */
 app.use('/admin', indexRouter)
 app.use('/admin/headertitle', headerTitleRouter)
+app.use('/admin/slideactive', slideRouter)
+app.use('/admin/bannerjob', bannerJobRouter)
 
 
 // 统一处理404错误

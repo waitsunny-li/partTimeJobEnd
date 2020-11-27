@@ -1,0 +1,282 @@
+<!--
+ * @Author: liweilong
+ * @Date: 2020-11-27 12:27:38
+-->
+
+{{ extend '../../layout/layout.html' }}
+
+{{ block 'title' }}
+{{ if bannerjob }}
+编辑工作轮播图内容
+{{ else }}
+添加工作轮播图内容
+{{ /if }}
+{{ /block }}
+
+{{ block 'content' }}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          {{ if bannerjob }}
+          <h4 class="m-0">编辑工作轮播图内容</h4>
+          {{ else }}
+          <h4 class="m-0">添加工作轮播图内容</h4>
+          {{ /if }}
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/admin">首页</a></li>
+            <li class="breadcrumb-item"><a href="/admin/bannerjob">工作轮播图内容</a></li>
+            <li class="breadcrumb-item active">添加</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              {{ if bannerjob }}
+              <h3 class="card-title">编辑轮播展示</h3>
+              {{ else }}
+              <h3 class="card-title">添加轮播展示</h3>
+              {{ /if }}
+            </div>
+            <!-- /.card-heade·r -->
+            <!-- form start -->
+            {{ if bannerjob }}
+            <form id="topBannerForm" action="/admin/bannerjob/edit" method="post">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="title">标题</label>
+                  <input type="text" class="form-control" id="title" placeholder="请输入工作标题" name="title"
+                    value="{{bannerjob.title}}">
+                  <input type="text" name="id" value="{{bannerjob.id}}" hidden>
+                </div>
+                <div class="form-group">
+                  <label for="part_title">工作岗位</label>
+                  <input type="text" class="form-control" id="part_title" placeholder="请输入工作岗位" name="part_title"
+                    value="{{bannerjob.part_title}}">
+                </div>
+                <div class="form-group">
+                  <label for="address">地址</label>
+                  <input type="text" class="form-control" id="address" placeholder="请输入工作地址" name="address"
+                    value="{{bannerjob.address}}">
+                </div>
+                <div class="form-group">
+                  <label for="time">工作天/小时</label>
+                  <input type="text" class="form-control" id="time" placeholder="请输入工作天/小时" name="time"
+                    value="{{bannerjob.time}}">
+                </div>
+                <div class="form-group">
+                  <label for="wage">工作薪资</label>
+                  <input type="text" class="form-control" id="wage" placeholder="请输入工作薪资" name="wage"
+                    value="{{bannerjob.wage}}">
+                </div>
+                <div class="form-group">
+                  <label for="link_url">跳转链接</label>
+                  <input type="text" class="form-control" id="link_url" name="link_url" placeholder="请输入跳转链接"
+                    value="{{bannerjob.link_url}}">
+                </div>
+                <div class="form-group">
+                  <label for="title_image_url">标题图片链接</label>
+                  <div class="input-group">
+                    <div class="custom-file title_file">
+                      <input type="file" class="custom-file-input" id="title_image_url">
+                      <label class="custom-file-label" for="title_image_url">{{bannerjob.title_image_url}}</label>
+                    </div>
+                    <img src="" alt="" id="tit_img_wrap" style="width: 180px;
+                    height: 180px;display: none;">
+                    <input type="text" id="title_img_url" name="title_image_url" hidden
+                      value="{{bannerjob.title_image_url}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="image_url">图片链接</label>
+                  <div class="input-group">
+                    <div class="custom-file image_file">
+                      <input type="file" class="custom-file-input" id="image_url">
+                      <label class="custom-file-label" for="image_url">{{bannerjob.image_url}}</label>
+                    </div>
+                    <img src="" alt="" id="img_wrap" style="width: 180px;
+                    height: 180px;display: none;">
+                    <input type="text" id="img_input" name="image_url" hidden value="{{bannerjob.image_url}}">
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" id="edit_btn">编辑</button>
+              </div>
+            </form>
+            {{ else }}
+            <form id="topBannerForm">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="title">标题</label>
+                  <input type="text" class="form-control" id="title" placeholder="请输入工作标题" name="title">
+                </div>
+                <div class="form-group">
+                  <label for="part_title">工作岗位</label>
+                  <input type="text" class="form-control" id="part_title" placeholder="请输入工作岗位" name="part_title">
+                </div>
+                <div class="form-group">
+                  <label for="address">地址</label>
+                  <input type="text" class="form-control" id="address" placeholder="请输入工作地址" name="address">
+                </div>
+                <div class="form-group">
+                  <label for="time">工作天/小时</label>
+                  <input type="text" class="form-control" id="time" placeholder="请输入工作天/小时" name="time">
+                </div>
+                <div class="form-group">
+                  <label for="wage">工作薪资</label>
+                  <input type="text" class="form-control" id="wage" placeholder="请输入工作薪资" name="wage">
+                </div>
+                <div class="form-group">
+                  <label for="link_url">跳转链接</label>
+                  <input type="text" class="form-control" id="link_url" name="link_url" placeholder="请输入跳转链接">
+                </div>
+                <div class="form-group">
+                  <label for="title_image_url">标题图片链接</label>
+                  <div class="input-group">
+                    <div class="custom-file title_file">
+                      <input type="file" class="custom-file-input" id="title_image_url">
+                      <label class="custom-file-label" for="title_image_url">选择图片</label>
+                    </div>
+                    <img src="" alt="" id="tit_img_wrap" style="width: 180px;
+                    height: 180px;display: none;">
+                    <input type="text" id="title_img_url" name="title_image_url" hidden>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="image_url">图片链接</label>
+                  <div class="input-group">
+                    <div class="custom-file image_file">
+                      <input type="file" class="custom-file-input" id="image_url">
+                      <label class="custom-file-label" for="image_url">选择图片</label>
+                    </div>
+                    <img src="" alt="" id="img_wrap" style="width: 180px;
+                    height: 180px;display: none;">
+                    <input type="text" id="img_input" name="image_url" hidden>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" id="btn_form">添加</button>
+              </div>
+            </form>
+            {{ /if }}
+
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+</div>
+{{ /block }}
+
+{{ block 'footer' }}
+<script>
+  $('#btn_form').on('click', function (event) {
+    event.preventDefault()
+    let formData = $('#topBannerForm').serialize()
+    $.ajax({
+      url: '/admin/bannerjob/add',
+      type: 'post',
+      data: formData,
+      dataType: 'json',
+      success: function (res) {
+        if (res.code === 200) {
+          console.log(res);
+          $('input[name=title]').val('')
+          $('input[name=title_image_url]').val('')
+          $('input[name=link_url]').val('')
+          $('input[name=part_title]').val('')
+          $('input[name=address]').val('')
+          $('input[name=wage]').val('')
+          $('input[name=time]').val('')
+          $('input[name=img_url]').val('')
+          layer.msg(res.msg, { icon: 1 });
+          $('#img_wrap').hide()
+          $('#tit_img_wrap').hide()
+          $('.custom-file').show()
+          $('#img_wrap').attr('src', '')
+          $('#tit_img_wrap').attr('src', '')
+        } else {
+          layer.msg(res.msg, { icon: 0 });
+        }
+
+      }
+    })
+  })
+
+
+  // 图片上传
+  $('#image_url').change(function () {
+    let formData = new FormData()
+    formData.set('img', this.files[0])
+    $.ajax({
+      url: '/admin/bannerjob/upload',
+      type: 'post',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (res) {
+        console.log(res);
+        if (res.code === 200) {
+          let { img_url } = res.data
+          console.log(img_url);
+          $('#img_wrap').attr('src', img_url)
+          $('#img_wrap').show()
+          $('.image_file').hide()
+          $('#img_input').val(img_url)
+        } else {
+          layer.msg('上传失败', { icon: 0 })
+        }
+      }
+    })
+  })
+
+  // 标题图片上传
+  $('#title_image_url').change(function () {
+    let formData = new FormData()
+    formData.set('img', this.files[0])
+    $.ajax({
+      url: '/admin/bannerjob/upload',
+      type: 'post',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (res) {
+        console.log(res);
+        if (res.code === 200) {
+          let { img_url } = res.data
+          $('#tit_img_wrap').attr('src', img_url)
+          $('#tit_img_wrap').show()
+          $('.title_file').hide()
+          $('#title_img_url').val(img_url)
+        } else {
+          layer.msg('上传失败', { icon: 0 })
+        }
+      }
+    })
+  })
+
+
+</script>
+{{ /block }}

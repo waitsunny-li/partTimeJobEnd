@@ -80,6 +80,40 @@
               </a>
             </li>
             {{/if}}
+
+            <!-- 活动展示 -->
+            {{ if (current === 3) }}
+            <li class="nav-item">
+              <a href="/admin/slideactive" class="nav-link active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>活动展示</p>
+              </a>
+            </li>
+            {{else}}
+            <li class="nav-item">
+              <a href="/admin/slideactive" class="nav-link ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>活动展示</p>
+              </a>
+            </li>
+            {{/if}}
+
+            <!-- 轮播展示 -->
+            {{ if (current === 4) }}
+            <li class="nav-item">
+              <a href="/admin/bannerjob" class="nav-link active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>轮播展示</p>
+              </a>
+            </li>
+            {{else}}
+            <li class="nav-item">
+              <a href="/admin/bannerjob" class="nav-link ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>轮播展示</p>
+              </a>
+            </li>
+            {{/if}}
             
           </ul>
         </li>

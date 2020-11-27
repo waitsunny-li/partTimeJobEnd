@@ -1,11 +1,11 @@
 <!--
  * @Author: liweilong
- * @Date: 2020-11-25 16:46:24
+ * @Date: 2020-11-27 09:06:11
 -->
 {{ extend '../../layout/layout.html' }}
 
 {{ block 'title' }}
-头部导航内容
+活动展示
 {{ /block }}
 
 {{ block 'content' }}
@@ -15,12 +15,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h4 class="m-0">头部导航内容</h4>
+          <h4 class="m-0">活动展示内容</h4>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/admin">首页</a></li>
-            <li class="breadcrumb-item active">头部导航</li>
+            <li class="breadcrumb-item active">活动展示</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -36,7 +36,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <a href="/admin/headertitle/add" class="btn btn-primary">添加</a>
+                <a href="/admin/slideactive/add" class="btn btn-primary">添加</a>
               </h3>
 
               <div class="card-tools">
@@ -58,23 +58,30 @@
                   <tr>
                     <th>标题</th>
                     <th>图片</th>
+                    <th>简介</th>
+                    <th>简介颜色</th>
+                    <th>按钮文字</th>
                     <th>跳转链接</th>
-                    <th>优先级</th>
+                    <th>背景色彩</th>
                     <th>操作</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {{ each headerTitles headerTitle}}
-                  <tr>
-                    <td>{{ headerTitle.title }}</td>
+                  {{ each slideActives slideActive}}
+                  <tr style="height: 80px;
+                  line-height: 80px;">
+                    <td>{{ slideActive.title }}</td>
                     <td>
-                      <img src="{{ headerTitle.img_url }}" alt="" style="width: 120px;height: 80px;">
+                      <img src="{{ slideActive.image_url }}" alt="" style="width: 120px;height: 80px;">
                     </td>
-                    <td>{{ headerTitle.link_url }}</td>
-                    <td>{{ headerTitle.priority }}</td>
+                    <td>{{ slideActive.desc }}</td>
+                    <td data-color="{{ slideActive.desc_color}}" class="desc_color"></td>
+                    <td>{{ slideActive.btn_text }}</td>
+                    <td>{{ slideActive.link_url }}</td>
+                    <td data-color="{{ slideActive.bg_color}}" class="td_bg_color"></td>
                     <td>
-                      <a href="javascript:void(0)" class="btn btn-danger del_btn" data-id="{{ headerTitle.id }}">删除</a>
-                      <a href="/admin/headertitle/add?id={{headerTitle.id}}" class="btn btn-info">编辑</a>
+                      <a href="javascript:void(0)" class="btn btn-danger del_btn" data-id="{{ slideActive.id }}">删除</a>
+                      <a href="/admin/slideActive/add?id={{slideActive.id}}" class="btn btn-info">编辑</a>
                     </td>
                   </tr>
                   {{ /each }}
@@ -99,7 +106,7 @@
     let id = $(this).attr('data-id')
 
     layer.confirm('是否要删除该内容?', { icon: 0, title: '提示' }, function (index) {
-      $.get('/admin/headertitle/del', { id: id }, function (data) {
+      $.get('/admin/slideactive/del', { id: id }, function (data) {
         layer.close(index);
         if (data.code === 200) {
           layer.msg(data.msg, { icon: 1 });
@@ -111,6 +118,20 @@
         }
       })
     });
+  })
+
+  $('.td_bg_color').each(function () {
+    let color = $(this).attr('data-color')
+    $(this).css({
+      'background-color': color
+    })
+  })
+
+  $('.desc_color').each(function () {
+    let color = $(this).attr('data-color')
+    $(this).css({
+      'background-color': color
+    })
   })
 </script>
 {{ /block }}

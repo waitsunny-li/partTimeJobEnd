@@ -1,11 +1,11 @@
 <!--
  * @Author: liweilong
- * @Date: 2020-11-25 16:46:24
+ * @Date: 2020-11-27 12:23:27
 -->
 {{ extend '../../layout/layout.html' }}
 
 {{ block 'title' }}
-头部导航内容
+工作轮播图内容
 {{ /block }}
 
 {{ block 'content' }}
@@ -15,12 +15,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h4 class="m-0">头部导航内容</h4>
+          <h4 class="m-0">工作轮播图内容</h4>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/admin">首页</a></li>
-            <li class="breadcrumb-item active">头部导航</li>
+            <li class="breadcrumb-item active">工作轮播图</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -36,7 +36,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <a href="/admin/headertitle/add" class="btn btn-primary">添加</a>
+                <a href="/admin/bannerjob/add" class="btn btn-primary">添加</a>
               </h3>
 
               <div class="card-tools">
@@ -57,24 +57,35 @@
                 <thead>
                   <tr>
                     <th>标题</th>
+                    <th>标题icon</th>
                     <th>图片</th>
+                    <th>工作岗位</th>
+                    <th>地址</th>
+                    <th>工作天/时</th>
+                    <th>工作薪资</th>
                     <th>跳转链接</th>
-                    <th>优先级</th>
                     <th>操作</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {{ each headerTitles headerTitle}}
+                  {{ each bannerjobs bannerjob}}
                   <tr>
-                    <td>{{ headerTitle.title }}</td>
+                    <td>{{ bannerjob.title }}</td>
                     <td>
-                      <img src="{{ headerTitle.img_url }}" alt="" style="width: 120px;height: 80px;">
+                      <img src="{{ bannerjob.title_image_url }}" alt="" style="width: 80px;height: 80px;">
                     </td>
-                    <td>{{ headerTitle.link_url }}</td>
-                    <td>{{ headerTitle.priority }}</td>
                     <td>
-                      <a href="javascript:void(0)" class="btn btn-danger del_btn" data-id="{{ headerTitle.id }}">删除</a>
-                      <a href="/admin/headertitle/add?id={{headerTitle.id}}" class="btn btn-info">编辑</a>
+                      <img src="{{ bannerjob.image_url }}" alt="" style="width: 120px;height: 80px;">
+                    </td>
+                    <td>{{ bannerjob.part_title }}</td>
+                    <td>{{ bannerjob.address }}</td>
+                    <td>{{ bannerjob.time }}</td>
+                    <td>{{ bannerjob.wage }}</td>
+                    <td>{{ bannerjob.link_url }}</td>
+                    
+                    <td>
+                      <a href="javascript:void(0)" class="btn btn-danger del_btn" data-id="{{ bannerjob.id }}">删除</a>
+                      <a href="/admin/bannerjob/add?id={{bannerjob.id}}" class="btn btn-info">编辑</a>
                     </td>
                   </tr>
                   {{ /each }}
@@ -99,7 +110,7 @@
     let id = $(this).attr('data-id')
 
     layer.confirm('是否要删除该内容?', { icon: 0, title: '提示' }, function (index) {
-      $.get('/admin/headertitle/del', { id: id }, function (data) {
+      $.get('/admin/bannerjob/del', { id: id }, function (data) {
         layer.close(index);
         if (data.code === 200) {
           layer.msg(data.msg, { icon: 1 });
