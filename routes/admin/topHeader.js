@@ -28,7 +28,8 @@ indexRouter.get('/topbanner', (req, res, next) => {
     }
     res.render('admin/topbanner/topbanner.html', {
       topHeaders: data,
-      current: 1
+      current: 1,
+      themeIndex: 1
     })
   })
 
@@ -49,7 +50,8 @@ indexRouter.get('/topbanner/add', (req, res, next) => {
     }
     res.render('admin/topbanner/addtopbanner.html', {
       topHeader: data,
-      current: 1
+      current: 1,
+      themeIndex: 1
     })
   })
 })

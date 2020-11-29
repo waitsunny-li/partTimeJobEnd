@@ -11,6 +11,8 @@ const indexRouter = require('./routes/admin/topHeader')
 const headerTitleRouter = require('./routes/admin/headerTitle')
 const slideRouter = require('./routes/admin/slideactive')
 const bannerJobRouter = require('./routes/admin/bannerJob')
+const positionRouter = require('./routes/admin/position')
+const jobRouter = require('./routes/admin/jobcontent')
 // api路由模块
 const themesRouter = require('./routes/api/themes')
 
@@ -49,7 +51,8 @@ app.use('/admin', indexRouter)
 app.use('/admin/headertitle', headerTitleRouter)
 app.use('/admin/slideactive', slideRouter)
 app.use('/admin/bannerjob', bannerJobRouter)
-
+app.use('/admin/position', positionRouter)
+app.use('/admin/jobcontent', jobRouter)
 
 // 统一处理404错误
 app.use((req, res) => {
@@ -58,6 +61,7 @@ app.use((req, res) => {
 
 // 配置统一处理错误信息中间件
 app.use((err, req, res, next) => {
+  console.log(err);
   res.json(err)
 })
 

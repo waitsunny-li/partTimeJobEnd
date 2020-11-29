@@ -8,7 +8,8 @@ const {
   topHeaders,
   headerTitles,
   slideActives,
-  bannerJobs
+  bannerJobs,
+  positions
 } = require('../../models/themes')
 const result = require('../../lib/result')
 
@@ -47,12 +48,13 @@ themesRouter.get('/slideactives', (req, res, next) => {
 // api头部导航小程序获取
 themesRouter.get('/bannerjobs', async (req, res, next) => {
   const data = await bannerJobs.find({})
-  if (data.length > 0) {
-    res.json(result.back(r))
-  } else {
-    next(result.servererror('获取失败'))
-  }
+  res.json(result.back(data))
+})
+
+// api position cate
+themesRouter.get('/positions', async (req, res, next) => {
+  const data = await positions.find({})
+  res.json(result.back(data))
 })
 
 module.exports = themesRouter
-

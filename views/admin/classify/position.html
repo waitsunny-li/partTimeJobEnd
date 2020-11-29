@@ -1,0 +1,70 @@
+<!--
+ * @Author: liweilong
+ * @Date: 2020-11-28 19:04:38
+-->
+{{ extend '../../layout/layout.html' }}
+
+{{ block 'head' }}
+<script src="/public/js/popout.js"></script>
+{{ /block }}
+
+{{ block 'title' }}
+职位内容
+{{ /block }}
+
+{{ block 'content' }}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h4 class="m-0">职位分类</h4>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/admin">首页</a></li>
+            <li class="breadcrumb-item active">职位分类</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="row position_group">
+      <!-- /.col -->
+      {{ each positionsData position }}
+      <div class="col-md-2 card_wrap">
+        <div class="card card-success">
+          <div class="card-header rounded-bottom">
+            <h3 class="card-title">{{position.name}}</h3>
+            <div class="card-tools">
+              <button type="button" data-id="{{position.id}}" class="btn del_btn btn-tool" data-card-widget=""><i
+                  class="fas fa-times"></i>
+              </button>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+        </div>
+        <!-- /.card -->
+      </div>
+      {{ /each }}
+    </div>
+
+    <!-- add position -->
+    <div class="row mt-5">
+      <div class="col-md-2 offset-5">
+        <button class="btn btn-lg btn-primary add_position">添加职位</button>
+      </div>
+    </div>
+  </div>
+  <!-- /.content -->
+</div>
+{{ /block }}
+
+{{ block 'footer' }}
+<script src="/public/js/admin/position.js"></script>
+{{ /block }}

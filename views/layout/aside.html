@@ -40,6 +40,7 @@
         <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
+          {{ if themeIndex == 1 }}
           <a href="#" class="nav-link active">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
@@ -47,6 +48,15 @@
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
+          {{ else }}
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              小程序主题内容
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          {{ /if }}
           <ul class="nav nav-treeview">
             {{ if (current === 1) }}
             <li class="nav-item">
@@ -114,17 +124,46 @@
               </a>
             </li>
             {{/if}}
-            
+
           </ul>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item ">
+          {{ if themeIndex == 2 }}
+          <a href="/admin/position" class="nav-link active">
             <i class="nav-icon fas fa-th"></i>
             <p>
-              Simple Link
-              <span class="right badge badge-danger">New</span>
+              分类
+              <span class="right badge badge-danger">职位</span>
             </p>
           </a>
+          {{ else }}
+          <a href="/admin/position" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              分类
+              <span class="right badge badge-danger">职位</span>
+            </p>
+          </a>
+          {{ /if }}
+        </li>
+        <li class="nav-item ">
+          {{ if themeIndex == 3 }}
+          <a href="/admin/jobcontent" class="nav-link active">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              工作内容
+              <span class="right badge badge-danger">🔥</span>
+            </p>
+          </a>
+          {{ else }}
+          <a href="/admin/jobcontent" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              工作内容
+              <span class="right badge badge-danger">🔥</span>
+            </p>
+          </a>
+          {{ /if }}
         </li>
       </ul>
     </nav>

@@ -27,7 +27,8 @@ headerTitleRouter.get('/', (req, res, next) => {
     }
     res.render('admin/headertitle/headertitle.html', {
       headerTitles: data,
-      current: 2
+      current: 2,
+      themeIndex: 1
     })
   })
 })
@@ -37,7 +38,8 @@ headerTitleRouter.get('/add', (req, res, next) => {
   let id = req.query.id
   if (!id) {
     res.render('admin/headertitle/addheadertitle.html', {
-      current: 2
+      current: 2,
+      themeIndex: 1
     })
   }
 
@@ -49,7 +51,8 @@ headerTitleRouter.get('/add', (req, res, next) => {
     }
     res.render('admin/headertitle/addheadertitle.html', {
       current: 2,
-      headerTitle: data
+      headerTitle: data,
+      themeIndex: 1
     })
   })
 

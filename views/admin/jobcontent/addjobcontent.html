@@ -1,0 +1,130 @@
+<!--
+ * @Author: liweilong
+ * @Date: 2020-11-29 18:14:43
+-->
+{{ extend '../../layout/layout.html' }}
+
+{{ block 'head' }}
+<!-- <link rel="stylesheet" href="/public/plugins/icheck-bootstrap/icheck-bootstrap.min.css"> -->
+<link rel="stylesheet" href="/public/plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="/public/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+{{ /block }}
+
+{{ block 'title' }}
+添加工作内容
+{{ /block }}
+
+
+{{ block 'content' }}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h4 class="m-0">添加工作</h4>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/admin">首页</a></li>
+            <li class="breadcrumb-item "><a href="/admin/jobcontent">工作内容</a></li>
+            <li class="breadcrumb-item active">添加内容</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">添加兼职内容</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form class="row flex-column">
+            <div class="card-body col-6">
+              <div class="form-group">
+                <label for="job_title">标题</label>
+                <input type="text" class="form-control" id="job_title" placeholder="请输入工作标题" name="job_title">
+              </div>
+              <div class="form-group">
+                <label for="address">地址</label>
+                <input type="text" class="form-control" id="address" placeholder="请输入地址（可不填）" name="address">
+              </div>
+              <div class="form-group">
+                <label for="company">公司</label>
+                <input type="text" class="form-control" id="company" placeholder="请输入公司名（可不填）" name="company">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">缩略图</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="exampleInputFile">
+                    <label class="custom-file-label" for="exampleInputFile">选择图片（可选填）</label>
+                  </div>
+                </div>
+                <div class="form-group mt-3" data-select2-id="82">
+                  <label>属性</label>
+                  <div class="select2-purple" data-select2-id="72">
+                    <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State"
+                      data-dropdown-css-class="select2-purple" style="width: 100%;" data-select2-id="15" tabindex="-1"
+                      aria-hidden="true">
+                      <option data-select2-id="73">日结</option>
+                      <option data-select2-id="74">时薪</option>
+                      <option data-select2-id="75">包吃</option>
+                      <option data-select2-id="76">包住</option>
+                      <option data-select2-id="77">限男生</option>
+                      <option data-select2-id="78">限女生</option>
+                      <option data-select2-id="79">工商认证</option>
+                      <option data-select2-id="79">有提成</option>
+                      <option data-select2-id="79">简单易做</option>
+                      <option data-select2-id="79">完工结</option>
+                    </select>
+                    <span
+                      class="select2 select2-container select2-container--default select2-container--above select2-container--focus"
+                      dir="ltr" data-select2-id="16" style="width: 100%;"><span class="selection"><span
+                          class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true"
+                          aria-expanded="false" tabindex="-1" aria-disabled="false">
+                          <ul class="select2-selection__rendered">
+                            <li class="select2-search select2-search--inline"><input class="select2-search__field"
+                                type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none"
+                                spellcheck="false" role="searchbox" aria-autocomplete="list"
+                                placeholder="Select a State" style="width: 530.5px;"></li>
+                          </ul>
+                        </span></span><span class="dropdown-wrapper" aria-hidden="true"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-body col-6">
+
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">添加</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+    </div>
+  </div>
+  <!-- /.content -->
+</div>
+{{ /block }}
+
+
+{{ block 'footer' }}
+<script src="/public/plugins/select2/js/select2.full.min.js"></script>
+{{ /block }}

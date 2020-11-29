@@ -118,10 +118,64 @@ const bannerJobSchema = {
   }
 }
 
+// 职位分类模式类型
+const positionSchema = {
+  name: {
+    type: String,
+    required: true
+  }
+}
+
+// jobcontent mode
+const jobcontentSchema = {
+  job_title: {
+    type: String,
+    required: true
+  },
+  image_url: {
+    type: String,
+    default: ''
+  },
+  address: {
+    type: String,
+    default: ''
+  },
+  job_content: {
+    type: String,
+    default: ''
+  },
+  job_require: {
+    type: String,
+    default: ''
+  },
+  company: {
+    type: String,
+    default: ''
+  },
+  cates: {
+    type: Array,
+    required: true
+  },
+  position: {
+    type: String,
+    required: true
+  },
+  time: {
+    type: String,
+    required: true
+  },
+  wage: {
+    type: String,
+    required: true
+  },
+}
+
 
 module.exports = {
   topHeaderSchema,
   headerTitleSchema,
   bannerActivesSchema,
-  bannerJobSchema
+  bannerJobSchema,
+  positionSchema,
+  jobcontentSchema
 }

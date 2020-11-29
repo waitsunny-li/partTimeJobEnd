@@ -1,0 +1,77 @@
+<!--
+ * @Author: liweilong
+ * @Date: 2020-11-29 17:14:14
+-->
+{{ extend '../../layout/layout.html' }}
+
+{{ block 'title' }}
+工作内容
+{{ /block }}
+
+
+{{ block 'content' }}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h4 class="m-0">工作列表</h4>
+        </div><!-- /.col -->
+        <a class="col-sm-1 offset-5" href="/admin/jobcontent/add">
+          <button type="button" class="btn btn-sm btn-primary btn-flat">添加工作</button>
+        </a><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="row">
+      <div class="col-3">
+        <!-- Default box -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title text-truncate">两分钟日结小任务</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="折叠">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="" title="删除">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row flex-column justify-content-center align-items-center">
+              <img src="http://localhost:3000/public/upload/bannerjobs/3253edaf03a4d146117d770cafdcf5b0han.jpg" alt=""
+                class="w-75 h-75 rounded-sm">
+              <div class="mt-2">宿迁伯杰网络科技有限公司</div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer position-relative">
+            <div class="row">
+              <button type="button" class="btn btn-sm btn-outline-danger btn-flat mr-2">日结</button>
+              <button type="button" class="btn btn-sm btn-outline-danger btn-flat">时薪</button>
+              <button type="button" class="btn btn-sm btn-primary btn-flat position-absolute" style="right: 10px">服务员</button>
+            </div>
+          </div>
+          <!-- /.card-footer-->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+
+
+  </div>
+  <!-- /.content -->
+</div>
+{{ /block }}
+
+
+{{ block 'footer' }}
+
+{{ /block }}

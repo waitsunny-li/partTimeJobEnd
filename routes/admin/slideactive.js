@@ -27,7 +27,8 @@ slideRouter.get('/', (req, res, next) => {
     }
     res.render('admin/slideactive/slideactives.html', {
       current: 3,
-      slideActives: data
+      slideActives: data,
+      themeIndex: 1
     })
   })
 })
@@ -44,12 +45,14 @@ slideRouter.get('/add', (req, res, next) => {
       }
       res.render('admin/slideactive/addslideactive.html', {
         current: 3,
-        slideActive: data
+        slideActive: data,
+        themeIndex: 1
       })
     })
   } else {
     res.render('admin/slideactive/addslideactive.html', {
-      current: 3
+      current: 3,
+      themeIndex: 1
     })
   }
 })

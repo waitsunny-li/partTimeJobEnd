@@ -27,7 +27,8 @@ bannerJobRouter.get('/', (req, res, next) => {
     }
     res.render('admin/bannerjob/bannerjob.html', {
       bannerjobs: data,
-      current: 4
+      current: 4,
+      themeIndex: 1
     })
   })
 })
@@ -37,7 +38,8 @@ bannerJobRouter.get('/add', (req, res, next) => {
   let id = req.query.id
   if (!id) {
     res.render('admin/bannerjob/addbannerjob.html', {
-      current: 4
+      current: 4,
+      themeIndex: 1
     })
   } else {
     bannerJobs.findOne({
@@ -49,7 +51,8 @@ bannerJobRouter.get('/add', (req, res, next) => {
       }
       res.render('admin/bannerjob/addbannerjob.html', {
         current: 4,
-        bannerjob: data
+        bannerjob: data,
+        themeIndex: 1
       })
     })
   }

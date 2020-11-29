@@ -7,7 +7,9 @@ const {
   topHeaderSchema,
   headerTitleSchema,
   bannerActivesSchema,
-  bannerJobSchema
+  bannerJobSchema,
+  positionSchema,
+  jobcontentSchema
 } = require('./schema')
 
 mongoose.connect('mongodb://admin:123456@job.i4ig.com:27017/parttimejob', {
@@ -32,10 +34,20 @@ const bannerJobSche = new Schema(bannerJobSchema)
 const bannerJobs = mongoose.model('bannerjob', bannerJobSche)
 
 
+// position schema mode
+const positionSche = new Schema(positionSchema)
+const positions = mongoose.model('position', positionSche)
+
+// jobcontent schema mode
+const jobcontentSche = new Schema(jobcontentSchema)
+const jobcontents = mongoose.model('jobcontent', jobcontentSche)
+
 
 module.exports = {
   topHeaders,
   headerTitles,
   slideActives,
-  bannerJobs
+  bannerJobs,
+  positions,
+  jobcontents
 }
