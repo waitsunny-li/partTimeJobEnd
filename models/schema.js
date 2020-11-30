@@ -168,6 +168,10 @@ const jobcontentSchema = {
     type: String,
     required: true
   },
+  created_time: {
+    type: String,
+    default: Date.now
+  }
 }
 
 
