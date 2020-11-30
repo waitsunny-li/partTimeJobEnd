@@ -9,9 +9,11 @@ const {
   headerTitles,
   slideActives,
   bannerJobs,
-  positions
+  positions,
+  jobcontents
 } = require('../../models/themes')
 const result = require('../../lib/result')
+const jobRouter = require('../admin/jobcontent')
 
 const themesRouter = express.Router()
 
@@ -54,6 +56,12 @@ themesRouter.get('/bannerjobs', async (req, res, next) => {
 // api position cate
 themesRouter.get('/positions', async (req, res, next) => {
   const data = await positions.find({})
+  res.json(result.back(data))
+})
+
+// api jobcontent 
+themesRouter.get('/jobcontents', async (req, res, next) => {
+  const data = await jobcontents.find({})
   res.json(result.back(data))
 })
 
