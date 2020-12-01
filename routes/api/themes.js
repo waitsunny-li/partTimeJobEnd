@@ -61,8 +61,19 @@ themesRouter.get('/positions', async (req, res, next) => {
 
 // api jobcontent 
 themesRouter.get('/jobcontents', async (req, res, next) => {
-  const data = await jobcontents.find({})
+  let {page, cate} = req.query
+  let page_num = page ? page : 1
+  let pageSize = parseInt(page_num) * 2
+  const data = await jobcontents.find({position: cate}).limit(pageSize)
   res.json(result.back(data))
 })
+
+// api a search of cate
+themesRouter.post('/jobcontents/search', async (req, res, next) => {
+  const data = await jobcontents.find({position: req.body.name})
+  res.json(result.back(data))
+})
+
+
 
 module.exports = themesRouter
