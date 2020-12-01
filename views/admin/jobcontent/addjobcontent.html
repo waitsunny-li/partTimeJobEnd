@@ -49,6 +49,72 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
+          {{ if jobcontent }}
+          <form class="row" id="jobform" action="/admin/jobcontent/edit" method="post">
+            <div class="card-body col-6">
+              <div class="form-group">
+                <label for="job_title">标题</label>
+                <input type="text" class="form-control" id="job_title" placeholder="请输入工作标题" name="job_title" value="{{jobcontent.job_title}}">
+                <input type="text" hidden value="{{jobcontent.id}}" name="id">
+              </div>
+              <div class="form-group">
+                <label for="address">地址</label>
+                <input type="text" class="form-control" id="address" placeholder="请输入地址（可不填）" name="address" value="{{jobcontent.address}}">
+              </div>
+              <div class="form-group">
+                <label for="company">公司</label>
+                <input type="text" class="form-control" id="company" placeholder="请输入公司名（可不填）" name="company" value="{{jobcontent.company}}">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">缩略图</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="text" class="custom-file-input" id="img_input" value="{{jobcontent.image_url}}" name="image_url" style="opacity: 1;">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 分类 -->
+              <div class="form-group">
+                <label>工作分类{{jobcontent.position}}</label>
+                <select class="form-control" name="position" value="{{jobcontent.position}}">
+                  <option value="0">暂无</option>
+                  {{ each positionList position }}
+                  {{ if position === jobcontent.position }}
+                  <option value="{{position.name}}" selected>{{position.name}}</option>
+                  {{ else }}
+                  <option value="{{position.name}}">{{position.name}}</option>
+                  {{ /if }}
+                 
+                  {{ /each }}
+                </select>
+              </div>
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-body col-6">
+              <div class="form-group">
+                <label for="time">时间(天/时)</label>
+                <input type="text" class="form-control" id="time" name="time" placeholder="请输入时间" value="{{jobcontent.time}}">
+              </div>
+              <div class="form-group">
+                <label for="wage">薪资</label>
+                <input type="text" class="form-control" id="wage" name="wage" placeholder="请输入时薪资" value="{{jobcontent.wage}}">
+              </div>
+              <div class="form-group">
+                <label for="job_require">工作要求</label>
+                <textarea class="form-control" rows="3" placeholder="请输入工作要求" name="job_require" >{{jobcontent.job_require}}</textarea>
+              </div>
+              <div class="form-group">
+                <label for="job_content">工作内容</label>
+                <textarea class="form-control" rows="3" placeholder="请输入工作内容" name="job_content" >{{jobcontent.job_content}}</textarea>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary edit_btn">编辑</button>
+            </div>
+          </form>
+          {{ else }}
           <form class="row" id="jobform">
             <div class="card-body col-6">
               <div class="form-group">
@@ -142,6 +208,7 @@
               <button type="submit" class="btn btn-primary save_btn">添加</button>
             </div>
           </form>
+          {{ /if }}
         </div>
         <!-- /.card -->
       </div>

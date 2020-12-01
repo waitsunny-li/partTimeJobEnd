@@ -29,10 +29,13 @@ jobRouter.get('/', async (req, res, next) => {
 
 // show add job
 jobRouter.get('/add', async (req, res, next) => {
+  let id = req.query.id
   const positionList = await positions.find({})
+  const data = await jobcontents.findOne({_id: id})
   res.render('admin/jobcontent/addjobcontent.html', {
     positionList,
     themeIndex: 3,
+    jobcontent: data
   })
 })
 
@@ -56,6 +59,20 @@ jobRouter.post('/del', async (req, res, next) => {
   } else {
     next(result.params_error('删除失败'))
   }
+})
+
+// edit jobcontent
+jobRouter.post('/edit', async (req, res, next) => {
+  let id = req.body.id
+  delete req.body.id
+  jobcontents.updateOne({
+    _id: id
+  }, req.body, (err, data) => {
+    if (err) {
+      next(result.params_error('更新失败'))
+    }
+    res.redirect('/admin/jobcontent')
+  })
 })
 
 // 处理上传图片

@@ -41,21 +41,26 @@
               <button type="button" class="btn btn-tool" data-card-widget="collapse" title="折叠">
                 <i class="fas fa-minus"></i>
               </button>
-              <button type="button" class="btn btn-tool del_btn" data-id="{{jobcontent.id}}"  title="删除">
+              <button class="btn btn-tool">
+                <a href="/admin/jobcontent/add?id={{jobcontent.id}}" class="text-decoration-none" style="color: #adb5bd;">
+                  <i class="fas fa-pencil-alt">
+                  </i>
+                </a>
+              </button>
+              <button type="button" class="btn btn-tool del_btn" data-id="{{jobcontent.id}}" title="删除">
                 <i class="fas fa-times"></i>
               </button>
             </div>
           </div>
           <div class="card-body">
             <div class="row flex-column justify-content-center align-items-center">
-              <img src="{{jobcontent.image_url}}" alt=""
-                class=" rounded-sm" style="width: 200px;height: 200px;">
-                {{ if jobcontent.address }}
-                <div class="mt-2">{{jobcontent.address}} </div>
-                {{ else }}
-                <div class="mt-2">{{jobcontent.company}} </div>
-                {{ /if }}
-              
+              <img src="{{jobcontent.image_url}}" alt="" class=" rounded-sm" style="width: 200px;height: 200px;">
+              {{ if jobcontent.address }}
+              <div class="mt-2">{{jobcontent.address}} </div>
+              {{ else }}
+              <div class="mt-2">{{jobcontent.company}} </div>
+              {{ /if }}
+
             </div>
           </div>
           <!-- /.card-body -->
@@ -64,7 +69,8 @@
               {{ each jobcontent.cates cate }}
               <button type="button" class="btn btn-sm btn-outline-danger btn-flat mr-2">{{cate}}</button>
               {{ /each }}
-              <button type="button" class="btn btn-sm btn-primary btn-flat position-absolute" style="right: 10px">{{jobcontent.position}}</button>
+              <button type="button" class="btn btn-sm btn-primary btn-flat position-absolute"
+                style="right: 10px">{{jobcontent.position}}</button>
             </div>
           </div>
           <!-- /.card-footer-->
@@ -83,7 +89,7 @@
 
 {{ block 'footer' }}
 <script>
-  $('.del_btn').click(function() {
+  $('.del_btn').click(function () {
     let id = $(this).attr('data-id')
     popout.confirm({
       title: '你确定要删除该内容吗？'
@@ -98,7 +104,7 @@
           success: function (data) {
             if (data.code === 200) {
               popout.success(data.msg)
-              setTimeout(function() {
+              setTimeout(function () {
                 window.location.reload()
               }, 1000)
             } else {
