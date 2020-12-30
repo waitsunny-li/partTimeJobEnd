@@ -30,7 +30,9 @@ app.use('/node_modules/', express.static(path.join(__dirname, './node_modules/')
 
 // 配置body-parser 中间件（插件：专门用来解析表单POST请求体）
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 // parse application/json
 app.use(bodyParser.json())
 
@@ -40,13 +42,22 @@ app.set('views', path.join(__dirname, './views/'))
 
 /**
  *  api路由
-*/
+ */
+// 解决跨域请求
+app.use('/api', (req, res, next) => {
+  const http = req.protocol + '://' + req.hostname + ':8080'
+  res.setHeader('Access-Control-Allow-Methods', 'POST,GET')
+  // http动态获取请求客户端请求的域   不用*的原因是带cookie的请求不支持*号
+  res.setHeader('Access-Control-Allow-Origin', http)
+  res.setHeader("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept,token")
+  next()
+})
 app.use('/api', themesRouter)
 
 
 /**
  * 后台管理路由
-*/
+ */
 app.use('/admin', indexRouter)
 app.use('/admin/headertitle', headerTitleRouter)
 app.use('/admin/slideactive', slideRouter)

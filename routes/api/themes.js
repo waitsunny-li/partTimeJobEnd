@@ -27,6 +27,29 @@ themesRouter.get('/topheaders', (req, res, next) => {
   })
 })
 
+// api头部轮播小程序添加
+themesRouter.post('/topheaders/add', async (req, res, next) => {
+  try {
+    const r = await new topHeaders(req.body.data).save()
+    res.json(result.ok('保存成功'))
+  } catch(e) {
+    next(result.params_error('标题不能为空'))
+  }
+})
+
+// api头部轮播小程序删除
+themesRouter.post('/topheaders/del', async (req, res, next) => {
+  const id = req.body.id
+  const r = await topHeaders.deleteOne({
+    _id: id
+  })
+  if (r.ok && r.deletedCount == 1) {
+    res.json(result.ok('删除成功'))
+  } else {
+    res.json(result.params_error('删除失败'))
+  }
+})
+
 // api头部导航小程序获取
 themesRouter.get('/headertitles', (req, res, next) => {
   headerTitles.find({}, (err, data) => {
@@ -61,16 +84,23 @@ themesRouter.get('/positions', async (req, res, next) => {
 
 // api jobcontent 
 themesRouter.get('/jobcontents', async (req, res, next) => {
-  let {page, cate} = req.query
+  let {
+    page,
+    cate
+  } = req.query
   let page_num = page ? page : 1
   let pageSize = parseInt(page_num) * 2
-  const data = await jobcontents.find({position: cate}).limit(pageSize)
+  const data = await jobcontents.find({
+    position: cate
+  }).limit(pageSize)
   res.json(result.back(data))
 })
 
 // api a search of cate
 themesRouter.post('/jobcontents/search', async (req, res, next) => {
-  const data = await jobcontents.find({position: req.body.name})
+  const data = await jobcontents.find({
+    position: req.body.name
+  })
   res.json(result.back(data))
 })
 
